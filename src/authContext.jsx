@@ -44,6 +44,13 @@ export const tokenExpireError = (dispatch, errorMessage) => {
     });
     window.location.href = "/" + role + "/login";
   }
+  // to check the token is still valid
+  else {
+    dispatch({
+      type: "LOGIN ", 
+    })
+    window.location.href = "/admin/dashboard"
+  }
 };
 
 const AuthProvider = ({ children }) => {
@@ -51,6 +58,10 @@ const AuthProvider = ({ children }) => {
 
   React.useEffect(() => {
     //TODO
+    if(user) {
+      window.location.href = "/admin/dashboard"
+    }
+
   }, []);
 
   return (
