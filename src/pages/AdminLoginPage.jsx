@@ -5,6 +5,7 @@ import * as yup from "yup";
 import MkdSDK from "../utils/MkdSDK";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../authContext";
+import {SnackBar} from "../components/SnackBar"
 
 const AdminLoginPage = () => {
   const schema = yup
@@ -29,6 +30,7 @@ const AdminLoginPage = () => {
     let sdk = new MkdSDK();
     //TODO
     sdk(data, () => {
+      <SnackBar/>
       navigate("/admin/dashboard");
     } )
   };
