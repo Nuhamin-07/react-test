@@ -30,8 +30,7 @@ const AdminLoginPage = () => {
   const onSubmit = async (data) => {
     let sdk = new MkdSDK();
     //TODO
-
-    const response =  await axios.post("https://reacttask.mkdlabs.com/v2/api/lambda/login", {
+    const response =  axios.post("https://reacttask.mkdlabs.com/v2/api/lambda/login", {
       headers : {
         "Content-Type" : "application/json"
       },
