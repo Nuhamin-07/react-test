@@ -91,6 +91,7 @@ export default function MkdSDK() {
 
   this.check = async function (role) {
     //TODO
+    this.role = await role;
   };
 
   return this;
