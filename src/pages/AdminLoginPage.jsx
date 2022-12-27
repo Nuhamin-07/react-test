@@ -37,7 +37,7 @@ const AdminLoginPage = () => {
       body: JSON.stringify(data),
       data: response.json()
     })
-    sdk(data, () => {
+    dispatch(data, () => {
       <SnackBar/>
       navigate("/admin/dashboard");
     } )
