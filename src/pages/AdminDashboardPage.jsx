@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom'
+import Paginate from '../components/Paginate';
+
 
 function logout() {
   const handleLogout = () => {
@@ -17,6 +19,46 @@ function logout() {
 }
 
 const AdminDashboardPage = () => {
+  postsPerPage
+  const [videoPost, setVideoPost] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [videosPerPage] = useState(3);
+
+
+  useEffect(() => {
+    const fetchVideos = async (data) => {
+       const { videos } = await fetch(
+          'https://reacttask.mkdlabs.com/v1/api/rest/video/PAGINATE',{
+            method: 'POST',
+            headers: {
+              "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(data),
+            data: videos.json()
+          }
+       );
+
+       setVideoPost(videos);
+    };
+    fetchVideos();
+ }, []);
+
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+ };
+
+  const previousPage = () => {
+    if (currentPage !== 1) {
+       setCurrentPage(currentPage - 1);
+    }
+ };
+
+ const nextPage = () => {
+  if (currentPage !== Math.ceil(videoPost.length / videosPerPage)) {
+     setCurrentPage(currentPage + 1);
+  }
+};
 
   return (
     <>
@@ -24,8 +66,17 @@ const AdminDashboardPage = () => {
         Dashboard
       </div>
       {logout()}
+      <Paginate
+                  postsPerPage={videosPerPage}
+                  totalPosts={videoPost.length}
+                  paginate={paginate}
+                  previousPage={previousPage}
+                  nextPage={nextPage}
+               />
     </>
   );
+
+  
 };
 
 export default AdminDashboardPage;
