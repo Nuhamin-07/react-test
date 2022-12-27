@@ -15,6 +15,9 @@ export default function MkdSDK() {
   
   this.login = async function (email, password, role) {
     //TODO
+    this.email = await email;
+    this.password = await password;
+    this.role = await role;
   };
 
   this.getHeader = function () {
