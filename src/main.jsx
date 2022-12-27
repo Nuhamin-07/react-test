@@ -22,6 +22,7 @@ function renderRoutes(role) {
       return (
         <Routes>
           <Route exact path="/admin/login" element={<AdminLoginPage />}></Route>
+          {/* not found page can't have exact prop since it doesn't have exact url */}
           <Route path="*" exact element={<NotFoundPage />}></Route>
         </Routes>
       );
