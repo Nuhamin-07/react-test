@@ -6,6 +6,7 @@ import MkdSDK from "../utils/MkdSDK";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../authContext";
 import {SnackBar} from "../components/SnackBar"
+import axios from "axios";
 
 const AdminLoginPage = () => {
   const schema = yup
@@ -29,6 +30,14 @@ const AdminLoginPage = () => {
   const onSubmit = async (data) => {
     let sdk = new MkdSDK();
     //TODO
+
+    const response =  await axios.post("https://reacttask.mkdlabs.com/v2/api/lambda/login", {
+      headers : {
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify(data),
+      data: response.json()
+    })
     sdk(data, () => {
       <SnackBar/>
       navigate("/admin/dashboard");
